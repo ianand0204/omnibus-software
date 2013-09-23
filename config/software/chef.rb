@@ -119,9 +119,7 @@ build do
   # install chef first so that ohai gets installed into /opt/chef/bin/ohai
   rake "gem", :env => env.merge({"PATH" => "#{install_dir}/embedded/bin:#{ENV['PATH']}"})
 
-  gem_version = build_version.gsub(/-.*/, '')
-
-  gem ["install pkg/chef-#{gem_version}.gem",
+  gem ["install pkg/chef-[^-]*.gem",
       "-n #{install_dir}/bin",
       "--no-rdoc --no-ri"].join(" "), :env => env.merge({"PATH" => "#{install_dir}/embedded/bin:#{ENV['PATH']}"})
 
